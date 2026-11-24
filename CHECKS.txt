@@ -1,0 +1,7 @@
+till-firmware-do-us-part checks v2 (after revision: 2-word minimum,
+terminal punctuation, no leading/trailing whitespace)
+node24 exit 0, node22.21.1 exit 0, outputs byte-identical
+entry.txt: 'I take you to be my wife, to love and to hold through every firmware update, until our batteries die and they recycle us into the same toaster.', 143 bytes, no newline, 143 chars, 28 words, gate 1-200 PASS
+grader sim (Node 22.21.1, unshare -n, user 65534 nobody, cwd /, read-only entry folder, 0.135s): exit 0, output byte-identical; output dir never deleted, stale files untouched
+negative tests (copies outside the repo): embedded newline -> exit 1, no entry.txt; trailing space -> exit 1, no entry.txt; 243-char vow -> exit 1 ("vow is 244 characters, must be 1-200")
+determinism: 3 executions (node24, node22.21.1, grader sim) all wrote byte-identical entry.txt
